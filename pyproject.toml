@@ -1,0 +1,134 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lm-anki-cards-creator"
+version = "2.0.0"
+description = "Professional-grade Anki flashcard generation with text and audio support"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.12"
+authors = [
+    { name = "Daniil Gusev", email = "danilgusev9639@gmail.com" }
+]
+keywords = ["anki", "flashcards", "tts", "education"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Environment :: Web Environment",
+    "Intended Audience :: Education",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Education",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+]
+
+dependencies = [
+    # Core model dependencies
+    "llama-cpp-python>=0.3.7",
+    # Unified model routing
+    "litellm==1.83.0",
+    # Anki deck creation
+    "genanki>=0.13.1",
+    # NLP utilities
+    "nltk>=3.9.1",
+    # Configuration and environment
+    "python-dotenv>=1.0.1",
+    "pydantic>=2.10.6",
+    # Utilities
+    "requests>=2.32.3",
+    "soundfile>=0.12.1",
+    "qwen-tts>=0.1.1",
+    # FastAPI web framework
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.32.0",
+    "lingua-language-detector>=2.2.0",
+    "torch>=2.7.1",
+    "stable-diffusion-cpp-python==0.4.5",
+]
+
+[project.optional-dependencies]
+gpu = [
+    # GPU acceleration support
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
+    "torchaudio>=2.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/dnlgsv/lm-anki-cards-creator"
+Repository = "https://github.com/dnlgsv/lm-anki-cards-creator"
+Documentation = "https://github.com/dnlgsv/lm-anki-cards-creator#readme"
+Issues = "https://github.com/dnlgsv/lm-anki-cards-creator/issues"
+
+[project.scripts]
+anki-creator = "src.main:main"
+anki-cards = "src.local_app:main"
+anki-api = "src.api.run:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.27.0",
+    "pytest>=8.4.0",
+    "pytest-cov>=6.0.0",
+    "pytest-mock>=3.14.0",
+    "ruff>=0.8.9",
+    "ty>=0.0.1a1",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "C4", "UP", "SIM"]
+ignore = [
+    "E501",  # Line too long
+    "B008",  # FastAPI uses Depends(...) in parameter defaults by design
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--cov=src",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--strict-markers",
+    "-v",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+]
+
+[tool.coverage.run]
+source = ["src"]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "*/__pycache__/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]
