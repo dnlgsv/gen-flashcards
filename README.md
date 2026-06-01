@@ -37,6 +37,10 @@ Back:
 
 ![Example card back](docs/demo/example-card-back.png)
 
+Back, continued:
+
+![Example card back continued](docs/demo/example-card-back-2.png)
+
 ## Requirements
 
 - Git
