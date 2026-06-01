@@ -212,7 +212,7 @@ export function TaskView({ taskId: routeTaskId }: PageProps) {
   return (
     <div className="flex flex-col">
       {/* Top bar */}
-      <div className="sticky top-14 z-10 bg-background border-b px-6 py-2 flex items-center gap-4 shrink-0">
+      <div className="z-10 flex shrink-0 flex-wrap items-center gap-4 border-b bg-background px-6 py-2">
 
         {/* Left: title */}
         <h1 className="font-semibold shrink-0">Review cards</h1>

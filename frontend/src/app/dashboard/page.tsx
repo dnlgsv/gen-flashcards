@@ -61,7 +61,7 @@ function ImportedDeckEditor({
 
   return (
     <div className="flex flex-col">
-      <div className="sticky top-14 z-10 flex items-center gap-4 border-b bg-background px-6 py-2">
+      <div className="z-10 flex flex-wrap items-center gap-4 border-b bg-background px-6 py-2">
         <Button variant="outline" size="sm" onClick={onBack}>
           Back
         </Button>

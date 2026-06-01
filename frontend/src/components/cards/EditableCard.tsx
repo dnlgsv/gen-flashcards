@@ -165,7 +165,7 @@ export function EditableCard({ card, onUpdate, onDelete }: EditableCardProps) {
   }
 
   return (
-    <div className="bg-[linear-gradient(180deg,rgba(251,245,236,0.72),rgba(255,255,255,0))] px-4 py-4 sm:px-5">
+    <div className="bg-[linear-gradient(180deg,rgba(251,245,236,0.72),rgba(255,255,255,0))] px-4 py-4 dark:bg-[linear-gradient(180deg,rgba(30,41,59,0.55),rgba(2,6,23,0))] sm:px-5">
       <div className="mx-auto w-full max-w-4xl">
         <div
           className="perspective-1800 relative grid"
@@ -174,7 +174,7 @@ export function EditableCard({ card, onUpdate, onDelete }: EditableCardProps) {
             <section
               onClick={() => setIsFlipped(true)}
               className={cn(
-                "card-face-panel card-face-front col-start-1 row-start-1 flex min-h-[460px] flex-col overflow-hidden rounded-2xl border border-amber-200/80 shadow-[0_18px_48px_rgba(15,23,42,0.11)] backface-hidden",
+                "card-face-panel card-face-front col-start-1 row-start-1 flex min-h-[460px] flex-col overflow-hidden rounded-2xl border border-amber-200/80 shadow-[0_18px_48px_rgba(15,23,42,0.11)] backface-hidden dark:border-amber-800/70",
                 isFlipped ? "pointer-events-none" : "cursor-pointer"
               )}
               style={{
@@ -191,10 +191,10 @@ export function EditableCard({ card, onUpdate, onDelete }: EditableCardProps) {
 
               <div className="relative flex items-start justify-between gap-4 border-b border-amber-200/70 px-4 py-3.5 sm:px-5">
                 <div className="min-w-0 space-y-1">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-amber-800/70">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-amber-800/70 dark:text-amber-300/80">
                     Front side
                   </p>
-                  <p className="text-sm text-stone-600">
+                  <p className="text-sm text-stone-600 dark:text-stone-300">
                     Image and description preview
                   </p>
                 </div>
@@ -205,14 +205,14 @@ export function EditableCard({ card, onUpdate, onDelete }: EditableCardProps) {
                     event.stopPropagation()
                     setIsFlipped(true)
                   }}
-                  className="inline-flex items-center gap-2 rounded-full border border-amber-300/80 bg-white/85 px-3 py-1.5 text-sm text-amber-900 transition-colors hover:border-amber-400 hover:bg-white"
+                  className="inline-flex items-center gap-2 rounded-full border border-amber-300/80 bg-white/85 px-3 py-1.5 text-sm text-amber-900 transition-colors hover:border-amber-400 hover:bg-white dark:border-amber-700 dark:bg-stone-900/80 dark:text-amber-100 dark:hover:bg-stone-900"
                 >
                   Show back
                 </button>
               </div>
 
               <div className="relative grid flex-1 gap-4 p-4 sm:grid-cols-[minmax(0,1.15fr)_minmax(250px,0.75fr)] sm:p-5">
-                <div className="relative flex min-h-[300px] overflow-hidden rounded-2xl border border-amber-200/80 bg-[linear-gradient(145deg,rgba(245,158,11,0.16),rgba(255,255,255,0.98))] shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">
+                <div className="relative flex min-h-[300px] overflow-hidden rounded-2xl border border-amber-200/80 bg-[linear-gradient(145deg,rgba(245,158,11,0.16),rgba(255,255,255,0.98))] shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:border-amber-800/70 dark:bg-[linear-gradient(145deg,rgba(245,158,11,0.14),rgba(28,25,23,0.98))]">
                   {imageFile ? (
                     <>
                       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.9),transparent_46%)]" />
@@ -227,7 +227,7 @@ export function EditableCard({ card, onUpdate, onDelete }: EditableCardProps) {
                           event.stopPropagation()
                           removeImage()
                         }}
-                        className="absolute right-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1.5 text-sm text-stone-700 shadow-sm transition-colors hover:text-destructive"
+                        className="absolute right-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1.5 text-sm text-stone-700 shadow-sm transition-colors hover:text-destructive dark:bg-stone-900/95 dark:text-stone-200"
                       >
                         <ImageOff className="h-3.5 w-3.5" />
                         Remove image
@@ -239,7 +239,7 @@ export function EditableCard({ card, onUpdate, onDelete }: EditableCardProps) {
                           regenerateImage()
                         }}
                         disabled={isBusy("image")}
-                        className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1.5 text-sm text-stone-700 shadow-sm transition-colors hover:text-primary disabled:opacity-60"
+                        className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1.5 text-sm text-stone-700 shadow-sm transition-colors hover:text-primary disabled:opacity-60 dark:bg-stone-900/95 dark:text-stone-200"
                       >
                         {isBusy("image") ? (
                           <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -251,11 +251,11 @@ export function EditableCard({ card, onUpdate, onDelete }: EditableCardProps) {
                     </>
                   ) : (
                     <div className="flex h-full w-full flex-col items-center justify-center gap-3 px-6 text-center">
-                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 text-amber-500 shadow-sm">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 text-amber-500 shadow-sm dark:bg-stone-900/90">
                         <ImageOff className="h-6 w-6" />
                       </div>
                       <div className="space-y-1.5">
-                        <p className="text-sm font-medium text-stone-700">No image on this card</p>
+                        <p className="text-sm font-medium text-stone-700 dark:text-stone-200">No image on this card</p>
                         <p className="max-w-sm text-sm leading-6 text-muted-foreground">
                           This front side can stay text-only, or you can regenerate visuals later.
                         </p>
@@ -267,7 +267,7 @@ export function EditableCard({ card, onUpdate, onDelete }: EditableCardProps) {
                           regenerateImage()
                         }}
                         disabled={isBusy("image")}
-                        className="inline-flex items-center gap-2 rounded-full border border-amber-300/80 bg-white/90 px-3 py-1.5 text-sm text-amber-900 transition-colors hover:border-amber-400 disabled:opacity-60"
+                        className="inline-flex items-center gap-2 rounded-full border border-amber-300/80 bg-white/90 px-3 py-1.5 text-sm text-amber-900 transition-colors hover:border-amber-400 disabled:opacity-60 dark:border-amber-700 dark:bg-stone-900/90 dark:text-amber-100"
                       >
                         {isBusy("image") ? (
                           <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -280,17 +280,17 @@ export function EditableCard({ card, onUpdate, onDelete }: EditableCardProps) {
                   )}
                 </div>
 
-                <div className="flex min-h-[300px] flex-col rounded-2xl border border-amber-200/80 bg-white/70 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">
+                <div className="flex min-h-[300px] flex-col rounded-2xl border border-amber-200/80 bg-white/70 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:border-amber-800/70 dark:bg-stone-900/70">
                   <div className="space-y-2.5">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-amber-800/70">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-amber-800/70 dark:text-amber-300/80">
                       Description
                     </p>
-                    <p className="text-sm leading-6 text-stone-700">
+                    <p className="text-sm leading-6 text-stone-700 dark:text-stone-200">
                       {card.definition || "Add a definition on the back side to show a cleaner description here."}
                     </p>
                   </div>
 
-                  <div className="mt-auto border-t border-amber-200/60 pt-4 text-xs leading-5 text-stone-500">
+                  <div className="mt-auto border-t border-amber-200/60 pt-4 text-xs leading-5 text-stone-500 dark:border-amber-800/70 dark:text-stone-400">
                     Click the card or use the button above to flip to the editable back side.
                   </div>
                 </div>
@@ -299,7 +299,7 @@ export function EditableCard({ card, onUpdate, onDelete }: EditableCardProps) {
 
             <section
               className={cn(
-                "card-face-panel card-face-back col-start-1 row-start-1 overflow-hidden rounded-2xl border border-sky-200/80 shadow-[0_18px_48px_rgba(15,23,42,0.11)] backface-hidden",
+                "card-face-panel card-face-back col-start-1 row-start-1 overflow-hidden rounded-2xl border border-sky-200/80 shadow-[0_18px_48px_rgba(15,23,42,0.11)] backface-hidden dark:border-sky-900/80",
                 !isFlipped && "pointer-events-none"
               )}
               style={{
@@ -317,7 +317,7 @@ export function EditableCard({ card, onUpdate, onDelete }: EditableCardProps) {
                 <div className="space-y-2">
                   <div className="relative flex flex-wrap items-start justify-between gap-3">
                     <div className="min-w-0 space-y-1">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-sky-900/60">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-sky-900/60 dark:text-sky-300/80">
                         Back side
                       </p>
                       <div className="flex items-center gap-2 min-w-0">
@@ -329,7 +329,7 @@ export function EditableCard({ card, onUpdate, onDelete }: EditableCardProps) {
                           type="button"
                           onClick={() => regenerateAudio("expression", "audio_expression")}
                           disabled={isBusy("audio_expression")}
-                          className="inline-flex items-center gap-1 rounded-full border border-sky-200/80 bg-white/75 px-2 py-1 text-xs text-slate-700 transition-colors hover:text-primary disabled:opacity-60"
+                          className="inline-flex items-center gap-1 rounded-full border border-sky-200/80 bg-white/75 px-2 py-1 text-xs text-slate-700 transition-colors hover:text-primary disabled:opacity-60 dark:border-sky-900 dark:bg-slate-950/75 dark:text-slate-200"
                         >
                           {isBusy("audio_expression") ? (
                             <Loader2 className="h-3 w-3 animate-spin" />
@@ -346,7 +346,7 @@ export function EditableCard({ card, onUpdate, onDelete }: EditableCardProps) {
                         value={card.part_of_speech || "other"}
                         onValueChange={(v) => onUpdate({ part_of_speech: v === "other" ? "" : v })}
                       >
-                        <SelectTrigger className="h-8 w-28 border-sky-200/70 bg-white/90 text-xs">
+                        <SelectTrigger className="h-8 w-28 border-sky-200/70 bg-white/90 text-xs dark:border-sky-900 dark:bg-slate-950/90">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -361,7 +361,7 @@ export function EditableCard({ card, onUpdate, onDelete }: EditableCardProps) {
                         value={card.cefr_level || "?"}
                         onValueChange={(v) => onUpdate({ cefr_level: v === "?" ? "" : v })}
                       >
-                        <SelectTrigger className="h-8 w-16 border-sky-200/70 bg-white/90 text-xs">
+                        <SelectTrigger className="h-8 w-16 border-sky-200/70 bg-white/90 text-xs dark:border-sky-900 dark:bg-slate-950/90">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -377,7 +377,7 @@ export function EditableCard({ card, onUpdate, onDelete }: EditableCardProps) {
                         <button
                           type="button"
                           onClick={removeImage}
-                          className="inline-flex items-center gap-1.5 rounded-full border border-sky-200/80 bg-white/75 px-3 py-1.5 text-xs text-slate-700 transition-colors hover:border-destructive/40 hover:text-destructive"
+                          className="inline-flex items-center gap-1.5 rounded-full border border-sky-200/80 bg-white/75 px-3 py-1.5 text-xs text-slate-700 transition-colors hover:border-destructive/40 hover:text-destructive dark:border-sky-900 dark:bg-slate-950/75 dark:text-slate-200"
                         >
                           <ImageOff className="h-3.5 w-3.5" />
                           Remove image
@@ -448,7 +448,7 @@ export function EditableCard({ card, onUpdate, onDelete }: EditableCardProps) {
                   </div>
                   <Textarea
                     rows={2}
-                    className="resize-none border-sky-200/70 bg-white/92 text-sm"
+                    className="resize-none border-sky-200/70 bg-white/92 text-sm dark:border-sky-900 dark:bg-slate-950/80"
                     value={card.definition}
                     onChange={(e) => onUpdate({ definition: e.target.value })}
                   />
@@ -487,7 +487,7 @@ export function EditableCard({ card, onUpdate, onDelete }: EditableCardProps) {
                   </div>
                   <Textarea
                     rows={3}
-                    className="resize-none border-sky-200/70 bg-white/92 text-sm"
+                    className="resize-none border-sky-200/70 bg-white/92 text-sm dark:border-sky-900 dark:bg-slate-950/80"
                     value={card.examples.join("\n")}
                     onChange={(e) => onUpdate({ examples: e.target.value.split("\n") })}
                     onBlur={(e) => onUpdate({ examples: e.target.value.split("\n").filter(Boolean) })}
@@ -531,7 +531,7 @@ export function EditableCard({ card, onUpdate, onDelete }: EditableCardProps) {
                 />
 
                 {imageFile && (
-                  <div className="space-y-2 rounded-2xl border border-sky-100 bg-white/65 p-3">
+                  <div className="space-y-2 rounded-2xl border border-sky-100 bg-white/65 p-3 dark:border-sky-900 dark:bg-slate-950/65">
                     <div className="flex items-center justify-between gap-3">
                       <span className="text-xs font-medium">Image</span>
                       <button

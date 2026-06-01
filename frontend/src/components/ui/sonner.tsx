@@ -1,13 +1,26 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { Toaster as Sonner } from "sonner"
 
 type ToasterProps = React.ComponentProps<typeof Sonner>
 
 const Toaster = ({ ...props }: ToasterProps) => {
+  const [theme, setTheme] = useState<"light" | "dark">("light")
+
+  useEffect(() => {
+    const html = document.documentElement
+    const updateTheme = () => setTheme(html.classList.contains("dark") ? "dark" : "light")
+    const observer = new MutationObserver(updateTheme)
+
+    updateTheme()
+    observer.observe(html, { attributes: true, attributeFilter: ["class"] })
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <Sonner
-      theme="light"
+      theme={theme}
       className="toaster group"
       toastOptions={{
         classNames: {

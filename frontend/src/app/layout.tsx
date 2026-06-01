@@ -9,6 +9,16 @@ export const metadata: Metadata = {
     "Create Anki vocabulary decks with definitions, examples, and audio in seconds.",
 }
 
+const themeScript = `
+  (() => {
+    const storedTheme = localStorage.getItem("lm-anki-cards-theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const theme = storedTheme ?? (prefersDark ? "dark" : "light");
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    document.documentElement.style.colorScheme = theme;
+  })();
+`
+
 export default function RootLayout({
   children,
 }: {
@@ -16,7 +26,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen flex flex-col antialiased">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="min-h-screen flex flex-col bg-background text-foreground antialiased">
         <Providers>
           <div className="flex flex-1 flex-col md:flex-row">
             <Sidebar />
