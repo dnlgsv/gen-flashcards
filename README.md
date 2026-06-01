@@ -21,6 +21,22 @@ The app supports two operating modes:
 - Local mode: use a local GGUF language model, local Qwen3 TTS, and local
   Stable Diffusion image generation.
 
+## Screenshots
+
+### Main Screen
+
+![Main screen](docs/demo/main-screen.png)
+
+### Example Card
+
+Front:
+
+![Example card front](docs/demo/example-card-front.png)
+
+Back:
+
+![Example card back](docs/demo/example-card-back.png)
+
 ## Requirements
 
 - Git
